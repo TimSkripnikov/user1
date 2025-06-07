@@ -1,0 +1,18 @@
+name: Count .txt Files
+
+on: push  # Запускать при каждом push
+
+jobs:
+  count-txt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Клонировать репозиторий
+        uses: actions/checkout@v3
+
+      - name: Посчитать количество .txt файлов
+        run: |
+          echo "Список .txt файлов:"
+          find . -type f -name "*.txt"
+          count=$(find . -type f -name "*.txt" | wc -l)
+          echo "Всего .txt файлов: $count"
